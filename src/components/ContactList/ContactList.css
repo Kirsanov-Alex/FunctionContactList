@@ -1,0 +1,9 @@
+.list-container {
+  margin: 5px;
+  width: 60%;
+  border: solid 1px white;
+  }
+.item-container {
+  height: 250px;
+  overflow-y: scroll;
+  }

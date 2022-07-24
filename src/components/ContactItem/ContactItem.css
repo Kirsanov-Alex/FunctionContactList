@@ -1,0 +1,32 @@
+.contact-item {
+  margin: 10px 5px;
+  min-height: 45px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background-color: white;
+  border: solid 1px transparent;
+  }
+  
+.contact-item:hover {
+  cursor: pointer;
+  border: solid 2px rgb(53, 13, 228)
+  }
+  
+.group-name {
+  font-size: 1.1em;
+  letter-spacing: 1.5px;
+  text-indent: 5%;
+  text-align: left;
+  flex-grow: 2;
+  }
+  
+.delete-btn {
+  margin: 5px;
+  font-size: 1.3em;
+  font-weight: 700;
+  text-align: right;
+  color: rgb(9, 150, 238);
+  border: solid 3px rgb(8, 150, 238);
+  background-color: white;
+}
