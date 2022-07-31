@@ -2,7 +2,7 @@ import React from 'react'
 import ContactItem from '../ContactItem/ContactItem'
 import './ContactList.css';
 
-function ContactList({contacts,onDelete,onEditContact, onAddContact}) {
+function ContactList({contacts, onDelete, onEditContact, onAddContact}) {
 
     return (
       <div className='list-container'>

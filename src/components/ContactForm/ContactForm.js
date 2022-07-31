@@ -8,10 +8,10 @@ function ContactForm ({contactForEdit, onSubmit, onDelete}) {
 
   function createEmptyContact(){
       return {
-        firstName:'',
-        lastName:'',
-        email:'',
-        phone:'',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
       }
     }
     
@@ -24,7 +24,7 @@ function ContactForm ({contactForEdit, onSubmit, onDelete}) {
     const onClearField = (e) => {
       const sibling = e.target.parentNode.firstChild;
       setEditContact({...editContact,
-        [sibling.name]:'',
+        [sibling.name]: '',
       });
     }
 

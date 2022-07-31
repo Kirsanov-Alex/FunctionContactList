@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import './App.css' 
-
+import './App.css';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
+import contactsService from './contacts-service.js';
  
 
 function App() {
@@ -11,30 +11,26 @@ function App() {
 
   function createEmptyContact(){
     return {
-      firstName:'',
-      lastName:'',
-      email:'',
-      phone:'',
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
     }
   }
   useEffect(() => {
-    const newContacts = JSON.parse(localStorage.getItem('contacts'))
-    if (!newContacts){
-      setContacts([])
-    }
-    else {
-      setContacts(newContacts)
-    }
+    contactsService.get('/').then(({data}) => {
+      if(!data) {
+        setContacts([]);
+      }else{
+        setContacts(data);
+      }
+    });
   }, [])
 
-  function saveToStorage(contacts){
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }
-
   const deleteContact = (id) =>{
+    contactsService.delete(`/${id}`);
     const newContacts = [...contacts.filter((contact) => contact.id !== id)]
       setContacts(newContacts);
-      saveToStorage(newContacts);
   }
 
   const saveContact = (contact) => {
@@ -55,19 +51,20 @@ function App() {
 
   function createContact(contact){
     contact.id = Date.now();
-    const newContacts = [...contacts, contact]
-    saveToStorage(newContacts);
+    contactsService.post('/', contact).then(({data})=>{
+      const newContacts = [...contacts, data]
     setContacts(newContacts);
+    });
     setContactForEdit(createEmptyContact());
     
   };
 
-  function updateContact(contact){
-      const newContacts = contacts.map((item) => 
-      item.id === contact.id ? contact : item
-      );
-      setContacts(newContacts);
-      setContactForEdit(createEmptyContact());
+  function updateContact(contact) {
+		contactsService.put(`/${contact.id}`, contact).then(({ data }) => {
+			const newContacts = contacts.map((item) => item.id === data.id ? data : item);
+			setContacts(newContacts);
+		})
+		setContactForEdit(createEmptyContact());
   };
 
     return (
