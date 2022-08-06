@@ -8,9 +8,8 @@ function ContactItem ({contact, onEdit, onDelete}) {
     onDelete(contact.id)
   }
 
-  const onContactEdit = (e) => {
-    e.stopPropagation()
-      onEdit(contact)
+  const onContactEdit = () => {
+    onEdit(contact)
   }
   
    return (
